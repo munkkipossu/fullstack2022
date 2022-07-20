@@ -1,12 +1,12 @@
 note left of browser
-user enters new note to a form and
-hits "save" (submit) button
+user enters new note to the form
+and hits "save" (submit) button
 end note
 
-browser->+browser: form eventhandler is called
+browser->+browser: form eventhandler script is called
 
 note over browser:
-new note is added and all notes
+new note is created and all notes
 are rendered in the browser
 end note
 
@@ -16,7 +16,13 @@ note left of server
 requet content type: application/json
 request content: {"content":"foobar","date":"2022-07-20T15:19:12.854Z"}
 end note
+
 server-->browser: 201 OK - HTML-code
+note right of browser:
+response content type: appliction/json
+response content: {"message":"note created"}
+end note
+
 
 note over browser
 eventhandler logs result
