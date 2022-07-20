@@ -13,17 +13,18 @@ end note
 
 browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
 note rightof browser:
-requet content type: application/json
+request content-type: application/json
 request content: {"content":"foobar","date":"2022-07-20T15:19:12.854Z"}
 end note
 
 server-->browser: 201 OK - {"message":"note created"}
 note left of server:
-response content type: appliction/json
+response content-type: appliction/json
 end note
-
 
 
 note over browser
 eventhandler logs result
 end note
+
+
