@@ -21,11 +21,11 @@ browser starts executing js-code
 that requests JSON data from server 
 end note
 
-browser->+browser: javascript execution
 note over browser:
-an eventhandler is defined for "window.onload":
-the form is loaded from DOM and an eventhandler
-is defined for it's "onsubmit" action
+an eventhandler is defined for 
+"window.onload": the form is loaded
+from DOM and an eventhandler is
+defined for it's "onsubmit" action
 end note
 
 
@@ -36,13 +36,10 @@ response content type: application/json
 end note
 
 note over browser:
-browser executes the event handler
-that
+browser executes the event handler that
  - parses json
  - adds notes to a list variable
  - finds existing notes element from DOM
  - empties child nodes from element (if they exist)
  - adds new notes to element
 end note
-
-browser->-browser: javascript ends
