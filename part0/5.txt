@@ -1,4 +1,4 @@
-note over browser
+note left of browser
 user enters url and hits enter
 end note
 
@@ -14,7 +14,7 @@ end note
 browser->server: https://studies.cs.helsinki.fi/exampleapp/main.css
 server-->browser: 200 OK - main.css
 browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
-server-->browser: main.js
+server-->browser: 200 OK - main.js
 
 note over browser:
 browser starts executing js-code
@@ -30,9 +30,9 @@ end note
 
 
 browser->server: https://studies.cs.helsinki.fi/exampleapp/data.json
-server-->browser: [{"content":"it is","date":"2022-07-20T05:13:44.195Z"}, ...]
-note over browser, server
-response content type: application/json
+server-->browser: 200 OK - [{"content":"it is","date":"2022-07-20T05:13:44.195Z"}, ...]
+note left of server: 
+response content-type: application/json
 end note
 
 note over browser:
@@ -41,5 +41,5 @@ browser executes the event handler that
  - adds notes to a list variable
  - finds existing notes element from DOM
  - empties child nodes from element (if they exist)
- - adds new notes to element
+ - adds new notes to element (DOM)
 end note
