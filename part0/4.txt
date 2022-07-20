@@ -1,0 +1,49 @@
+note over browser:
+user writes text to the note field,
+clicks the "save" (submit) button
+end note
+
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over browser, server
+request content:
+note=bazbaz
+end note
+
+
+note over server:
+server saves the note to a runtime
+list, along with a current timestamp
+end note
+
+server-->browser: 302 Found - location: /exampleapp/notes
+note over browser
+browser follows the redirect,
+using the "location" header
+end noten
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: 200 OK - HTML-code
+
+note over browser
+browser parses the html, retrieving
+stylesheet and js script
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: 200 OK - main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: 200 OK - main.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "Form data is sent with HTTP POST","date":"2022-07-20T04:45:22.022Z" }, ...]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note

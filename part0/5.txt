@@ -1,0 +1,48 @@
+note over browser
+user enters url and hits enter
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+
+server-->browser: 200 OK - HTML-code
+
+note over browser
+browser parses the html, retrieving
+stylesheet and js script
+end note
+
+browser->server: https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: 200 OK - main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+server-->browser: main.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->+browser: javascript execution
+note over browser:
+an eventhandler is defined for "window.onload":
+the form is loaded from DOM and an eventhandler
+is defined for it's "onsubmit" action
+end note
+
+
+browser->server: https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{"content":"it is","date":"2022-07-20T05:13:44.195Z"}, ...]
+note over browser, server
+response content type: application/json
+end note
+
+note over browser:
+browser executes the event handler
+that
+ - parses json
+ - adds notes to a list variable
+ - finds existing notes element from DOM
+ - empties child nodes from element (if they exist)
+ - adds new notes to element
+end note
+
+browser->-browser: javascript ends
