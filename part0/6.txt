@@ -1,0 +1,25 @@
+note left of browser
+user enters new note to a form and
+hits "save" (submit) button
+end note
+
+browser->+browser: form eventhandler is called
+
+note over browser:
+new note is added and all notes
+are rendered in the browser
+end note
+
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+note left of server
+requet content type: application/json
+request content: {"content":"foobar","date":"2022-07-20T15:19:12.854Z"}
+end note
+server-->browser: 201 OK - HTML-code
+
+note over browser
+eventhandler logs result
+end note
+
+
