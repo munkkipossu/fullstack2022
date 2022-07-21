@@ -7,8 +7,8 @@ const Button = (props) => (
 )
 
 
-const Datum = ({name, value}) => (
-  <p>{name} {value}</p>
+const StatisticLine = ({text, value}) => (
+  <p>{text} {value}</p>
 )
 
 const Statistics = ({good, neutral, bad}) => {
@@ -16,17 +16,26 @@ const Statistics = ({good, neutral, bad}) => {
   const average = () => (good - bad)/total()
   const positive = () => good/total()*100
 
-  return (
-    <div>
-      <h1>statistics</h1>
-      <Datum name="good" value={good} />
-      <Datum name="neutral" value={neutral} />
-      <Datum name="bad" value={bad} />
-      <p>all {total()}</p>
-      <p>average {average()}</p>
-      <p>positive {positive()}%</p>
-    </div>
-  )
+  if (total() === 0) {
+    return (
+      <div>
+        <h1>statistics</h1>
+        <p>No feedback given</p>
+      </div> 
+    )
+  } else {
+    return (
+      <div>
+        <h1>statistics</h1>
+        <StatisticLine text="good" value={good} />
+        <StatisticLine text="neutral" value={neutral} />
+        <StatisticLine text="bad" value={bad} />
+        <p>all {total()}</p>
+        <p>average {average()}</p>
+        <p>positive {positive()}%</p>
+      </div>
+    )
+  }
 }
 const App = () => {
   const [good, setGood] = useState(0)
