@@ -2,11 +2,11 @@
 
 NOTE: Folder *lesson* was used for following and experimenting with the course contents.
 
-### Course Information: Exercises 1-5
+###  Exercises 1-5: Course Information
 Folder *courseinfo* contains the final state of the app, as it was finished after the 5th exercise.
 
-### Unicafe: Exercises 6-11
+### Exercises 6-11: Unicafe
 Folder *unicafe* contains the final state of the app, as it was finished after the 11th exercise.
 
-### Anecdotes: Exercises 12-14
+###  Exercises 12-14: Anecdotes
 Folder *anecdotes* contains the final state of the app, as it was finished after the 14th exercise.
