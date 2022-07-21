@@ -5,9 +5,8 @@ end note
 
 
 browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
-note over browser, server
-request content:
-note=bazbaz
+note right of browser:
+request content: note=bazbaz
 end note
 
 
