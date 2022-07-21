@@ -14,7 +14,7 @@ end note
 browser->server: https://studies.cs.helsinki.fi/exampleapp/main.css
 server-->browser: 200 OK - main.css
 browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
-server-->browser: 200 OK - main.js
+server-->browser: 200 OK - spa.js
 
 note over browser:
 browser starts executing js-code
@@ -43,3 +43,4 @@ browser executes the event handler that
  - empties child nodes from element (if they exist)
  - adds new notes to element (DOM)
 end note
+
