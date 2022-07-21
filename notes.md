@@ -13,3 +13,10 @@ Attribute [reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attribut
 
 ## 1
 
+A lot of things to keep track of: javasript vs react, 
+
+`let` seems to be important for closures, otherwise `var` can be used (global vs "block" scope)
+
+The way libraries in javascript (eg. React, JSX) modify the syntax of the language is **really** weird. It almost seems as though using React is different from using javascript, just the underlying engine is the same.
+
+
