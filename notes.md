@@ -35,6 +35,8 @@ NOTE - classes are not first true constructs of the language -> so how does `thi
 
 ### React
 
+Basics seem quite straight forward, not sure how more complex state should be handled. That will probably come later.
+
 look at function syntax at some point, the simplified syntax for "one liners" seems easy to misuse
 
 
