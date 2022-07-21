@@ -1,15 +1,8 @@
 import { useState } from 'react'
 
-const Button = (props) => (
-  <button onClick={props.handleClick}>
-    {props.text}
-  </button>
-)
+const Button = ({handleClick, text}) => <button onClick={handleClick}>{text}</button>
 
-
-const StatisticLine = ({text, value}) => (
-  <p>{text} {value}</p>
-)
+const StatisticLine = ({text, value}) => <tr><td>{text}</td><td>{value}</td></tr>
 
 const Statistics = ({good, neutral, bad}) => {
   const total = () => good + neutral + bad
@@ -27,16 +20,21 @@ const Statistics = ({good, neutral, bad}) => {
     return (
       <div>
         <h1>statistics</h1>
-        <StatisticLine text="good" value={good} />
-        <StatisticLine text="neutral" value={neutral} />
-        <StatisticLine text="bad" value={bad} />
-        <p>all {total()}</p>
-        <p>average {average()}</p>
-        <p>positive {positive()}%</p>
+        <table>
+          <tbody>
+            <StatisticLine text="good" value={good} />
+            <StatisticLine text="neutral" value={neutral} />
+            <StatisticLine text="bad" value={bad} />
+            <tr><td>all</td><td>{total()}</td></tr>
+            <tr><td>average</td><td>{average()}</td></tr>
+            <tr><td>positive</td><td>{positive()}%</td></tr>
+            </tbody>
+        </table>
       </div>
     )
   }
 }
+
 const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
