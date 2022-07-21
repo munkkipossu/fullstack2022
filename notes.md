@@ -1,7 +1,7 @@
 # Notes
 
 
-## 0
+## Part0
 Read lectures, all pretty clear. Gotta find time for the exercises.
 
 
@@ -15,7 +15,7 @@ Attribute [reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Attribut
 - [pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
 
 
-## 1
+## Part1
 
 A lot of things to keep track of: javasript vs react, react versions, firefox vs chrome (how do their dev environments differ?)
 
