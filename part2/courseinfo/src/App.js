@@ -41,10 +41,10 @@ const App = () => {
         id: 3
       },
       {
-        name: 'State foo of a component',
-        exercises: 1,
+        name: 'Redux',
+        exercises: 11,
         id: 4
-      }
+      },
     ]
   }
 
