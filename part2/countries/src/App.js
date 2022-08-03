@@ -1,26 +1,58 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
+const apiKey = process.env.REACT_APP_WEATHER_API_KEY
+
 const Filter = ({filter, handler}) =>
   <div>
     find countries:  
     <input value={filter} onChange={handler} />
   </div>
 
-const Country = ({country}) => 
-  <div>
-    <h2>{country.name.common}</h2>
-    <div>Flag: {country.flag}</div>
-    <p>Capital: {country.capital[0]}</p>
-    <p>Population: {country.population}</p>
-    <p>Land area: {country.area}</p>
-    <div>Languages:
-      <ul>
-        {Object.entries(country.languages).map(x => <li key={x[0]}>{x[1]}</li>)}
-      </ul>
-    </div>
-  </div>
+const Weather = ({prediction}) =>
+   <>
+    <img src={`http://openweathermap.org/img/wn/${prediction.weather[0].icon}@2x.png`} alt="Weather icon"/>
+    <p>{(prediction.main.temp - 273).toFixed(2)} degrees Celcius, {prediction.weather[0].description}</p>
+    <p>wind {prediction.wind.speed} m/s</p>
+  </>
 
+const Country = ({country}) => {
+  const [weather, setWeather] = useState(null)
+  useEffect(() => {
+    if (country.capital) {
+      axios
+      .get(`https://api.openweathermap.org/data/2.5/weather?lat=${country.capitalInfo.latlng[0]}&lon=${country.capitalInfo.latlng[1]}&appid=${apiKey}`)
+      .then(response => {
+        console.log(response.data);
+        setWeather(response.data)
+      })
+    }
+  }, [])
+
+  return (
+    <div>
+      <h2>{country.name.common}</h2>
+      <div>Flag: {country.flag}</div>
+      {country.capital ? <p>Capital: {country.capital[0]}</p> : ''}
+      <p>Population: {country.population}</p>
+      <p>Land area: {country.area}</p>
+      { country.languages ?
+      <div>Languages:
+        <ul>
+          {Object.entries(country.languages).map(x => <li key={x[0]}>{x[1]}</li>)}
+        </ul>
+      </div>
+      : ''  
+      }
+      {country.capital ? <div> 
+        <h3>Weather in {country.capital[0]}</h3>
+        {weather ? <Weather prediction={weather} /> : ''}
+        </div>
+        : ''
+      }
+      </div>
+  )
+}
 
 function App() {
   const [countries, setCountries] = useState([])
