@@ -20,23 +20,37 @@ const Country = ({country}) =>
       </ul>
     </div>
   </div>
-  
+
+
 function App() {
   const [countries, setCountries] = useState([])
+  const [buttons, setButtons] = useState([])
   const [filter, setFilter] = useState('')
 
   const filterHandler = (event) => setFilter(event.target.value)
 
+  const flipButton = (index) => () => {
+    console.log('Setting button handler for ', index);
+    setButtons(buttons.map((x, i) => i === index ? !x : x))
+  }
+
   const showCountries = () =>{
+    if (countries.length === 0){
+      return <p>still loading countries</p>
+    }
     const matchingCountries = countries.filter(x => x.name.common.toLowerCase().includes(filter.toLowerCase()))
-    
-    if (matchingCountries.length === 1){
+    if (matchingCountries.length === 0){
+      return <p>No countries found, too strict filter</p>
+    } else  if (matchingCountries.length === 1){
       return (<Country country={matchingCountries[0]} />);
     } else if (matchingCountries.length < 10){
-      return matchingCountries.map(x => <p key={x.name.common}>{x.name.common}</p>)
+      console.log(matchingCountries[0].name.common);
+      console.log(countries.indexOf(matchingCountries[0]));
+      return matchingCountries.map(
+        (x) => <div key={x.name.common}>{x.name.common} <button onClick={flipButton(countries.indexOf(x))}>{buttons[countries.indexOf(x)] ? 'hide' : 'show'}</button>{buttons[countries.indexOf(x)] ? <Country country={x} /> : ''} </div >)
     }
     
-    return ('More than 10 countries')
+    return <p>More than 10 countries, specify the filter</p>
     
   }
 
@@ -48,6 +62,7 @@ function App() {
         console.log('received data')
         console.log(response.data)
         setCountries(response.data)
+        setButtons(response.data.map(x => false))
       })
     }, [])
   
@@ -55,9 +70,7 @@ function App() {
   return (
     <div>
       <Filter filter={filter} handler={filterHandler} />
-      <div>
-        {showCountries()}
-      </div>
+      {showCountries()}
     </div>
   );
 }
