@@ -54,11 +54,20 @@ const App = () => {
   const addName = (event) => {
     event.preventDefault()
     if (persons.map(person => person.name).includes(newName)) {
-      alert(`${newName} is already added to phonebook`)
+      if(window.confirm(`Person named "${newName}" exists already, update number?`)){
+        const oldPerson = persons[persons.map(person => person.name).indexOf(newName)]
+        personService
+          .update({...oldPerson, number: newNumber})
+          .then(updatedPerson => {
+            setPersons(persons.filter(person => person.id !== updatedPerson.id).concat(updatedPerson))
+            setNewName('')
+            setNewNumber('')    
+            }
+        )
+      }
     } else {
-      const newPerson = {name: newName, number: newNumber}
       personService
-        .create(newPerson)
+        .create({name: newName, number: newNumber})
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
           setNewName('')

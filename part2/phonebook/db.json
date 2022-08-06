@@ -22,7 +22,12 @@
     },
     {
       "name": "bar",
-      "number": "321",
+      "number": "666",
+      "id": 5
+    },
+    {
+      "name": "foobar",
+      "number": "123",
       "id": 6
     }
   ]
