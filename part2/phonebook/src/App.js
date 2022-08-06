@@ -27,13 +27,13 @@ const PersonForm = ({formHandler, name, nameHandler, number, numberHandler}) =>
       </div>
     </form>
 
-const Persons = ({persons, filter}) => {
-  const nameFilter = person => person.name.toLowerCase().includes(filter.toLowerCase())
-  const personFormatter = person => <p key={person.name}>{person.name} {person.number}</p>
-  return (
-    <div>{persons.filter(nameFilter).map(personFormatter)}</div>
-  )
+const Person = ({name, number, deletePerson}) => {
+  return <li>
+    {name} {number}
+    <button onClick={deletePerson}>delete</button>
+  </li>
 }
+
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
@@ -56,14 +56,23 @@ const App = () => {
     if (persons.map(person => person.name).includes(newName)) {
       alert(`${newName} is already added to phonebook`)
     } else {
-      const newPerson = {name: newName, number: newNumber, id:persons.length + 1}
+      const newPerson = {name: newName, number: newNumber}
       personService
         .create(newPerson)
         .then(returnedPerson => {
-          setPersons(persons.concat(newPerson))
+          setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewNumber('')    
         })
+    }
+  }
+
+  const deletePerson = (id) => {
+    return () => {
+      if (window.confirm('Do you really really wanna delete this person?')) {
+        personService.deletePerson(id)
+        setPersons(persons.filter(person => person.id !== id))
+      }
     }
   }
 
@@ -92,7 +101,17 @@ const App = () => {
         numberHandler={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <Persons persons={persons} filter={nameFilter}/>
+      <ul>
+      {
+        persons.filter(person => person.name.toLowerCase().includes(nameFilter.toLowerCase()))
+          .map(person => 
+            <Person key={person.id}
+              name={person.name} 
+              number={person.number}
+              deletePerson={deletePerson(person.id)} />
+          )
+      }
+      </ul>
     </div>
   )
 }
