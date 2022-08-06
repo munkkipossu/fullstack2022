@@ -1,33 +1,8 @@
 import { useState, useEffect } from 'react'
 import personService from './services/persons'
-
-const Notification = ({ message, errorState }) => {
-  if (message === null) {
-    return null
-  }
-  const style = {
-    color: errorState ? 'red' : 'green',
-    background: 'lightgrey',
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 15,
-  }
-
-  return (
-    <div style={style} className='notification'>
-      {message}
-    </div>
-  )
-}
-
-
-const Filter = ({filter, handler}) =>
-  <div>
-    filter shown with 
-    <input value={filter} onChange={handler} />
-  </div>
+import Persons from './components/Persons'
+import Notification from './components/Notification'
+import Filter from './components/Filter'
 
 const PersonForm = ({formHandler, name, nameHandler, number, numberHandler}) => 
   <form onSubmit={formHandler}>
@@ -48,30 +23,7 @@ const PersonForm = ({formHandler, name, nameHandler, number, numberHandler}) =>
       </div>
     </form>
 
-const Person = ({name, number, deletePerson}) => {
-  return (
-    <li>
-      {name} {number}
-      <button onClick={deletePerson}>delete</button>
-    </li>
-  )}
 
-const Persons = ({persons, nameFilter, deletePerson}) => {
-  return (
-    <ul>
-      {
-        persons.filter(person => person.name.toLowerCase().includes(nameFilter.toLowerCase()))
-          .map(person => 
-            <Person key={person.id}
-              name={person.name} 
-              number={person.number}
-              deletePerson={deletePerson(person)} />
-          )
-      }
-    </ul>
-
-  )
-}
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
@@ -103,7 +55,7 @@ const App = () => {
             setPersons(persons.filter(person => person.id !== updatedPerson.id).concat(updatedPerson))
             setNewName('')
             setNewNumber('')    
-            }
+          }
         ).catch( error => {
           setErrorState(true)
           setNotifyMessage(
