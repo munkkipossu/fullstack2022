@@ -37,7 +37,14 @@ NOTE - classes are not first true constructs of the language -> so how does `thi
 
 Basics seem quite straight forward, not sure how more complex state should be handled. That will probably come later.
 
-look at function syntax at some point, the simplified syntax for "one liners" seems easy to misuse
+-> look at function syntax at some point, the simplified syntax for "one liners" seems easy to misuse
+
+
+## Part 2
+
+The premise that "state" should be held as "high" as possible seems sound, but nothing so far explains how to do this in more complex cases. At the moment this seems to lead to a **huge** state held near **App**, very large components that get passed massively complex state one variable at a time.
+
+Gotta wrap my head around Events (ie. button is pressed, form submitted?), UseEffect (response to an change in state but different from event?), and form actions
 
 
 
