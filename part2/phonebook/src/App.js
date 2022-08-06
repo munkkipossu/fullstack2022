@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import personService from './services/persons'
 
-const Notification = ({ message }) => {
+const Notification = ({ message, errorState }) => {
   if (message === null) {
     return null
   }
   const style = {
-    color: 'green',
+    color: errorState ? 'red' : 'green',
     background: 'lightgrey',
     fontSize: 20,
     borderStyle: 'solid',
@@ -78,6 +78,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [nameFilter, setNameFilter] = useState('')
   const [notifyMessage, setNotifyMessage] = useState(null)
+  const [errorState, setErrorState] = useState(false)
 
   useEffect(() => {
     console.log('effect - getting phonebook data')
@@ -103,7 +104,19 @@ const App = () => {
             setNewName('')
             setNewNumber('')    
             }
-        )
+        ).catch( error => {
+          setErrorState(true)
+          setNotifyMessage(
+            `"${newName}" has already been deleted`,
+            'red'
+          )
+          setTimeout(() => {setErrorState(false); setNotifyMessage(null)}, 6000)
+          setPersons(persons.filter(person => person.id !== oldPerson.id))
+          setNewName('')
+          setNewNumber('')    
+
+        }
+      )
       }
     } else {
       personService
@@ -125,7 +138,15 @@ const App = () => {
           setNotifyMessage(`Deleted ${deletePerson.name}`)
           setTimeout(() => {setNotifyMessage(null)}, 6000)
           setPersons(persons.filter(person => person.id !== deletePerson.id))
-        })
+        }).catch( error => {
+          setErrorState(true)
+          setNotifyMessage(
+            `${deletePerson.name} has already been deleted`,
+            'red'
+          )
+          setTimeout(() => {setErrorState(false); setNotifyMessage(null)}, 6000)
+        }
+      )
       }
     }
   }
@@ -145,7 +166,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={notifyMessage} />
+      <Notification message={notifyMessage} errorState={errorState} />
       <Filter filter={nameFilter} handler={handleNameFilterChange}/>
       <h2>add a new</h2>
       <PersonForm 

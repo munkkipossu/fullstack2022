@@ -29,11 +29,6 @@
       "name": "foo",
       "number": "333",
       "id": 9
-    },
-    {
-      "name": "baz",
-      "number": "999",
-      "id": 10
     }
   ]
 }
