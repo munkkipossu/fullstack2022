@@ -87,10 +87,6 @@ const App = () => {
             'red'
           )
           setTimeout(() => {setErrorState(false); setNotifyMessage(null)}, 6000)
-          setPersons(persons.filter(person => person.id !== oldPerson.id))
-          setNewName('')
-          setNewNumber('')    
-
         })
     }
   }
