@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
     "title": "How I met a Balrog and won",
-    "author": "Gandalf the Grey",
+    "author": "Gandalf the White",
     "url": "www.safe-haeven.me",
-    "likes": 125891
+    "likes": 12312312312
 }
