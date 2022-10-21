@@ -2,8 +2,8 @@ const supertest = require('supertest')
 const app = require('../app')
 const mongoose = require('mongoose')
 const api = supertest(app)
-helper = require('./blog_test_helper')
 const Blog = require('../models/blog')
+const helper = require('./blog_test_helper')
 
 beforeEach(async () => {
   await Blog.deleteMany({})
@@ -92,6 +92,18 @@ test('posting blog fails if title or url is missing', async () => {
     .expect(400)
 
 })
+
+test('remove blog', async () => {
+  const reponse = await api.get('/api/blogs')
+  const id = reponse.body[0].id
+
+  await api.delete(`/api/blogs/${id}`)
+
+  response = await api.get('/api/blogs')
+  expect(response.body.map(b => b.id)).not.toContain(id)
+
+},
+100000)
 
 afterAll(() => {
   mongoose.connection.close()
