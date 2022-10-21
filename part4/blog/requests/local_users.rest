@@ -1,0 +1,21 @@
+GET http://localhost:3003/api/users
+
+###
+
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "username": "theTallOne",
+    "password": "password",
+    "name": "Meriadoc"
+}
+
+###
+
+PUT  http://localhost:3003/api/blogs/6352cdb44e5730186500651e
+Content-Type: application/json
+
+{
+    "likes": 999999999999
+}
