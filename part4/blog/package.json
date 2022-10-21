@@ -4,15 +4,16 @@
   "description": "site for keeping track of blogs",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest --verbose"
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "test": "NODE_ENV=test jest --verbose --runInBand --forceExit"
   },
   "author": "Teemu Laakso",
   "license": "MIT",
   "devDependencies": {
     "jest": "^29.2.1",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
