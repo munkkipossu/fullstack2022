@@ -45,6 +45,29 @@ test('adding a blog is saved', async () => {
   expect(response.body.map(blog => blog.title)).toContain(title)
 }, 100000)
 
+test('adding blog without likes sets the value to zero', async () => {
+  const title = 'The art of breakfasts'
+  const newBlog = {
+    title: title,
+    author: 'Peregrin Took',
+    url: 'www.tooks.me/breakfasts/truth-about-breakfasts',
+  }
+
+  await api
+  .post('/api/blogs')
+  .send(newBlog)
+  .expect(201)
+  .expect('Content-Type', /application\/json/)
+
+  const response = await api.get('/api/blogs')
+  response.body.forEach(blog => {
+    if (blog.title === title){
+      expect(blog.likes).toBeDefined()
+      expect(blog.likes).toBe(0)
+    }
+  })
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
