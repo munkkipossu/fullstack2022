@@ -57,16 +57,26 @@ const App = () => {
             setNewNumber('')    
           }
         ).catch( error => {
-          setErrorState(true)
-          setNotifyMessage(
-            `"${newName}" has already been deleted`,
-            'red'
-          )
-          setTimeout(() => {setErrorState(false); setNotifyMessage(null)}, 6000)
-          setPersons(persons.filter(person => person.id !== oldPerson.id))
-          setNewName('')
-          setNewNumber('')    
-
+          console.log(error);
+          if (error.response.data.error){
+            setErrorState(true)
+            setNotifyMessage(
+              error.response.data.error,
+              'red'
+            )
+            setTimeout(() => {setErrorState(false); setNotifyMessage(null)}, 6000)
+  
+          } else {
+            setErrorState(true)
+            setNotifyMessage(
+              `"${newName}" has already been deleted`,
+              'red'
+            )
+            setTimeout(() => {setErrorState(false); setNotifyMessage(null)}, 6000)
+            setPersons(persons.filter(person => person.id !== oldPerson.id))
+            setNewName('')
+            setNewNumber('')    
+            }
         }
       )
       }
