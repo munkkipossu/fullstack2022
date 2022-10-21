@@ -105,6 +105,20 @@ test('remove blog', async () => {
 },
 100000)
 
+test('updating likes works', async () => {
+  const response = await api.get('/api/blogs')
+  const oldNote = response.body[0]
+
+  await api
+    .put(`/api/blogs/${oldNote.id}`)
+    .send({likes: 666})
+    .expect(200)
+
+  const changedResponse = await api.get('/api/blogs')
+  expect(changedResponse.body.map(b => b.likes)).toContain(666)
+
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })

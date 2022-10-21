@@ -11,3 +11,12 @@ Content-Type: application/json
     "url": "www.safe-haeven.me",
     "likes": 12312312312
 }
+
+###
+
+PUT  http://localhost:3003/api/blogs/6352cdb44e5730186500651e
+Content-Type: application/json
+
+{
+    "likes": 999999999999
+}
