@@ -38,9 +38,29 @@ const mostBlogs = (blogs) => {
   return sortedCounts[0]
 }
 
+const mostLikes = (blogs) => {
+  if (blogs.length === 0)
+    return null
+
+  const likeCounts = blogs.reduce(
+    (data, blog) => {
+      data[blog.author] = data[blog.author] || {author: blog.author, likes: 0}
+      data[blog.author].likes = data[blog.author].likes + blog.likes
+      return data
+    },
+    {}
+  )
+  const sortedLikes = Object.values(likeCounts)
+  sortedLikes.sort((x, y) => x.likes < y.likes ? 1 : -1)
+  console.log(sortedLikes)
+  return sortedLikes[0]
+}
+
+
 module.exports = {
   dummy,
   totalLikes,
   favouriteBlog,
   mostBlogs,
+  mostLikes,
 }
