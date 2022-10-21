@@ -68,6 +68,31 @@ test('adding blog without likes sets the value to zero', async () => {
   })
 })
 
+test('posting blog fails if title or url is missing', async () => {
+  const missingTitle = {
+    author: 'Bilbo Baggins',
+    url: 'www.bag-end.me/elf/truth-about-galadriel',
+    likes: 1
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(missingTitle)
+    .expect(400)
+
+  const missingUrl = {
+    title: 'Wrong places to store a magical ring',
+    author: 'Frodo Baggins',
+    likes: 2
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(missingUrl)
+    .expect(400)
+
+})
+
 afterAll(() => {
   mongoose.connection.close()
 })
