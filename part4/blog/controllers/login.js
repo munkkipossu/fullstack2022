@@ -5,15 +5,19 @@ const User = require('../models/user')
 
 loginRouter.post('/', async (request, response) => {
   const { username, password } = request.body
-
   const user = await User.findOne({ username })
   const passwordCorrect = user === null
     ? false
     : await bcrypt.compare(password, user.password)
 
-  if (!(user && passwordCorrect)) {
+  if (!(passwordCorrect)) {
     return response.status(401).json({
-      error: 'invalid username or password'
+      error: 'invalid password'
+    })
+  }
+  if (!(user)) {
+    return response.status(401).json({
+      error: 'invalid username'
     })
   }
 

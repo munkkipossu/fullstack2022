@@ -1,7 +1,8 @@
 const dummy = (blogs) => {
+  blogs
   return 1
 }
-  
+
 const totalLikes = (blogs) => {
   return blogs.reduce((sum, blog) => sum + blog.likes, 0)
 }
@@ -9,8 +10,8 @@ const totalLikes = (blogs) => {
 const favouriteBlog = (blogs) => {
   if (blogs.length === 0)
     return null
-  
-  favourites = [...blogs]
+
+  const favourites = [...blogs]
   favourites.sort((x, y) => x.likes < y.likes ? 1 : -1)
 
   return {
@@ -23,13 +24,13 @@ const favouriteBlog = (blogs) => {
 const mostBlogs = (blogs) => {
   if (blogs.length === 0)
     return null
-  
+
   const blogCounts = blogs.reduce(
     (data, blog) => {
-      data[blog.author] = data[blog.author] || {author: blog.author, blogs: 0}
+      data[blog.author] = data[blog.author] || { author: blog.author, blogs: 0 }
       data[blog.author].blogs++
       return data
-    }, 
+    },
     {}
   )
   const sortedCounts = Object.values(blogCounts)
@@ -44,7 +45,7 @@ const mostLikes = (blogs) => {
 
   const likeCounts = blogs.reduce(
     (data, blog) => {
-      data[blog.author] = data[blog.author] || {author: blog.author, likes: 0}
+      data[blog.author] = data[blog.author] || { author: blog.author, likes: 0 }
       data[blog.author].likes = data[blog.author].likes + blog.likes
       return data
     },
@@ -52,7 +53,6 @@ const mostLikes = (blogs) => {
   )
   const sortedLikes = Object.values(likeCounts)
   sortedLikes.sort((x, y) => x.likes < y.likes ? 1 : -1)
-  console.log(sortedLikes)
   return sortedLikes[0]
 }
 
