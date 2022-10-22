@@ -129,6 +129,24 @@ describe('addition of a blog', () => {
 
   }, 100000)
 
+  test('with no token fails', async () => {
+    const initialBlogs = await helper.blogsInDb()
+
+    const newBlog = {
+      title: 'Po-ta-toes - smash \'em',
+      author: 'SamWise',
+      url: 'www.bagend.me/recepies/potates/mashem',
+      likes: 3123213,
+    }
+    await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(401)
+
+    const endBlogs = await helper.blogsInDb()
+    expect(endBlogs).toHaveLength(initialBlogs.length)
+
+  }, 100000)
 
   test('without likes sets the value to zero', async () => {
     const title = 'The art of breakfasts'
