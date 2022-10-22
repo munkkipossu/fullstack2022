@@ -6,7 +6,18 @@ POST http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-    "username": "aaa",
-    "password": "aaa",
-    "name": "Meriadoc"
+    "username": "grey",
+    "password": "longlongtimeago",
+    "name": "Gandalf the Grey"
+}
+
+###
+
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "username": "white",
+    "password": "thereandbackagain",
+    "name": "Gandalf the White"
 }

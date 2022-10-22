@@ -14,6 +14,18 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "How I met a Balrog",
+    "author": "Gandalf the Grey",
+    "url": "www.safe-haeven.me",
+    "likes": 12312312312
+}
+
+###
+
 PUT  http://localhost:3003/api/blogs/6352cdb44e5730186500651e
 Content-Type: application/json
 
