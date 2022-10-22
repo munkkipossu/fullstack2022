@@ -49,11 +49,11 @@ describe('inital blogs', () => {
   test('are returned in correct quantity', async () => {
     const response = await api.get('/api/blogs')
     const initialBlogs = await helper.blogsInDb()
-    expect(response.body).toHaveLength(initialBlogs)
+    expect(response.body).toHaveLength(initialBlogs.length)
 
     const userResponse = await api.get('/api/users')
     const initialUsers = await helper.usersInDb()
-    expect(userResponse.body).toHaveLength(initialUsers)
+    expect(userResponse.body).toHaveLength(initialUsers.length)
   })
 
   test('have user linked to them', async () => {
