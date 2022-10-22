@@ -23,7 +23,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdyZ
     "title": "How I met a Balrog",
     "author": "Gandalf the Grey",
     "url": "www.safe-haeven.me",
-    "likes": 12312312312
+    "likes": 4321
 }
 
 ###
