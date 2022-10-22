@@ -4,6 +4,7 @@ GET http://localhost:3003/api/blogs
 
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndoaXRlIiwiaWQiOiI2MzUzYTI1OTQyNGU0Y2JiMWNjM2ZhYjAiLCJpYXQiOjE2NjY0Mjg4MTB9.04tQ7TBQ9bQyN19tTA8FkQAmJn2ktLoU6mRsWD7ExY4
 
 {
     "title": "How I met a Balrog and won",
@@ -16,6 +17,7 @@ Content-Type: application/json
 
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdyZXkiLCJpZCI6IjYzNTNhMjU1NDI0ZTRjYmIxY2MzZmFhZSIsImlhdCI6MTY2NjQyODc4OH0.lxyjkjWwcNrpuKQQM-nIMmFLwpXn4GmtmWIsifcLMyg
 
 {
     "title": "How I met a Balrog",
